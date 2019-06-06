@@ -1,0 +1,15 @@
+{% extends './layout.njk' %}
+
+{% block content %}
+<div class='inner'>
+    <h2> {{ title }} </h2>
+    <div class='map'>
+        <div class='autocomplete'>
+            <input class='autocomplete__input' type='text' placeholder='Search for anything' name='geolocate'>
+        </div>
+        <div id='map'>
+            <p> Loading Map... </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

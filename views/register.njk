@@ -1,0 +1,18 @@
+{% extends './layout.njk' %}
+
+{% block content %}
+    <div class='inner'>
+        <form class='form' action='/register' method='POST'>
+            <h2> Register </h2>
+            <label for='name'> Name </label>
+            <input type='text' name='name' required>
+            <label for='email'> Email </label>
+            <input type='email' name='email' required>
+            <label for='password'> Password </label>
+            <input type='password' name='password' required>
+            <label for='password-confirm'> Confirm Password </label>
+            <input type='password' name='password-confirm' required>
+            <input class='button' type='submit' value='Register →'>
+        </form>
+    </div>
+{% endblock %}

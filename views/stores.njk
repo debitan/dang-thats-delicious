@@ -1,0 +1,16 @@
+{% extends "./layout.njk" %}
+
+{% import "./macros/_storeCard.njk" as storeCard with context %}
+{% import "./macros/_pagination.njk" as pagination with context %}
+
+{% block content %}
+    <div class="inner">
+        <h2>{{ title }}</h2>
+        <div class="stores">
+            {% for store in stores %}
+                {{ storeCard.storeCard(store) }}
+            {% endfor %}
+        </div>
+        {{ pagination.pagination(page, pages, count) }}
+    </div>
+{% endblock %}

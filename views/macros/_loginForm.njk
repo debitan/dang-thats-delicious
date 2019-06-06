@@ -1,0 +1,10 @@
+{% macro loginForm() %}
+<form class="form" action="/login" method="POST">
+    <h2>{{title}}</h2>
+    <label for="email">email</label>
+    <input type="email" name="email">
+    <label for="password">password</label>
+    <input type="password" name="password">
+    <input class="button" type="submit" value="Log in →">
+</form>
+{% endmacro %}

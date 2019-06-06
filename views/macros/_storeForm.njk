@@ -1,0 +1,32 @@
+{% macro storeForm(store = {}) %}
+    <form action={{"/add/" ~ store._id if store._id else "/add"}} method="POST" class="card" enctype="multipart/form-data">
+        <label for="name">Name</label>
+        <input type="text" name="name" value="{{store.name}}">
+        <label for="description">Description</label>
+        <textarea name="description"> {{store.description}} </textarea>
+        {# upload photo #}
+        <label for="photo">Photo </label>
+        <input type="file" id="photo" name="photo" accept="image/gif, image/png, image/jpeg">
+            {% if store.photo %}
+                <img src="/uploads/{{store.photo}}" alt="{{store.name}}" width=200>
+            {% endif %}
+        <pre>{{req.file}}</pre>
+        <label for="address">Address</label>
+        <input type="text" id="address" name="location[address]" value={% if store.location and store.location.address %}"{{store.location.address}}"{% endif %}>
+        <label for="lng">Address longitude</label>
+        <input type="text" id="lng" name="location[coordinates][0]" required value={% if store.location and store.location.coordinates[0] %}"{{store.location.coordinates[0]}}"{% endif %}>
+        <label for="lat">Address latitude</label>
+        <input type="text" id="lat" name="location[coordinates][1]" required value={% if store.location and store.location.coordinates[1] %}"{{store.location.coordinates[1]}}"{% endif %}>
+        {% set tags = [] %}
+        {% set tags = store.tags if store.tags %}
+        <ul class="tags">
+            {% for choice in choices %}
+                <div class="tag tag__choice">
+                        <input type="checkbox" id="{{ choice }}" value="{{ choice }}" name="tags" {{ "checked" if includes(tags, choice)}}>
+                        <label for=choice> {{ choice }} </label>
+                </div>
+            {% endfor %}
+        </ul>
+        <input type="submit" value="Save →" class="button">
+    </form>
+{% endmacro %}

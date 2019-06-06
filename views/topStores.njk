@@ -1,0 +1,28 @@
+{% extends "./layout.njk" %}
+
+{% block content %}
+    <div class="inner">
+        <h2> Top {{stores.length}} Stores </h2>
+        <table class="table">
+            <thead>
+                <td> Photo </td>
+                <td> Ranking</td>
+                <td> Name </td>
+                <td> Reviews </td>
+                <td> Average Rating</td>
+            </thead>
+            {% for store in stores %}
+                <tr id="storeRow" href="/stores/{{store.slug}}">
+                    <td>
+                        <img width=200 src="/uploads/{{store.photo}}" alt="{{store.name}}">
+                    </td>
+                    <td> {{loop.index}} </td>
+                    <td> {{store.name}}
+                    </td>
+                    <td> {{store.reviews | length}} </td>
+                    <td> {{store.averageRating | round(1)}} </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

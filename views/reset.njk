@@ -1,0 +1,14 @@
+{% extends './layout.njk' %}
+
+{% block content %}
+    <div class='inner'>
+        <form class='form' method='POST'>
+            <h2> {{title}} </h2>
+            <label for='password'> Password </label>
+            <input type='password' name='password'>
+            <label for='password-confirm'> Confirm password </label>
+            <input type='password' name='password-confirm'>
+            <input class='button' type='submit' value='Reset password →'>
+        </form>
+    </div>
+{% endblock %}

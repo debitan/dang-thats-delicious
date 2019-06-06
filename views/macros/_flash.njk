@@ -1,0 +1,44 @@
+{% macro flash() %}
+  {% if flashes.error %}
+  <div class="inner">
+    <div class="flash-messages">
+      {% for message in flashes.error %}
+      <div class="flash flash--error">
+        <p class="flash__text">
+          {{message}}
+        </p>
+        <button class="flash__remove" onClick="this.parentElement.remove()">&times;</button>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+  {% if flashes.success %}
+  <div class="inner">
+    <div class="flash-messages">
+      {% for message in flashes.success %}
+      <div class="flash flash--success">
+        <p class="flash__text">
+          {{message}}
+        </p>
+        <button class="flash__remove" onClick="this.parentElement.remove()">&times;</button>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+  {% if flashes.info %}
+  <div class="inner">
+    <div class="flash-messages">
+      {% for message in flashes.info %}
+      <div class="flash flash--info">
+        <p class="flash__text">
+          {{message}}
+        </p>
+        <button class="flash__remove" onClick="this.parentElement.remove()">&times;</button>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+{% endmacro %}

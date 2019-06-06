@@ -1,0 +1,7 @@
+{% macro forgotForm() %}
+    <form class='form' action='/account/forgot' method='POST'>
+        <h2> I forgot my password </h2>
+        <label for='email'> Email </label>
+        <input type='email' name='email'>
+        <input class='button' type='submit' value='Send a reset'>
+{% endmacro %}

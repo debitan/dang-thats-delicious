@@ -1,0 +1,10 @@
+{% extends './layout.njk' %}
+{% import './macros/_loginForm.njk' as loginForm with context %}
+{% import './macros/_forgot.njk' as forgot with context %}
+
+{% block content %}
+    <div class='inner'>
+        {{ loginForm.loginForm() }}
+        {{ forgot.forgotForm() }}
+    </div>
+{% endblock %}

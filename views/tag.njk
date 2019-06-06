@@ -1,0 +1,30 @@
+{% extends './layout.njk' %}
+
+{% import "./macros/_storeCard.njk" as storeCard with context %}
+
+{% block content %}
+<div class='inner'>
+    <h2> {{tag if tag else 'Tags'}} </h2>
+    <ul class='tags'>
+        {% for t in tags %}
+        <li class='tag'>
+            <a
+            {% if t._id === tag %}
+            class="tag__link tag__link--active"
+            {% else %}
+                class="tag__link"
+            {% endif %}
+            href="/tags/{{t._id}}">
+                <span class='tag__text'> {{t._id}} </span>
+                <span class='tag__count'> {{t.count}} </span>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+    <div class='stores'>
+        {% for store in stores %}
+            {{ storeCard.storeCard(store)}}
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

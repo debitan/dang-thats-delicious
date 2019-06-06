@@ -1,0 +1,145 @@
+{% import './macros/_flash.njk' as flash with context %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>`{{title}} | {{h.siteName}}`</title>
+  <link rel="stylesheet" href="/dist/style.css">
+  <link rel="shortcut icon" type="image/png" href="/images/icons/doughnut.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+  {% block header %}
+  <header class="top">
+    <nav class="nav">
+      <div class="nav__section nav__section--pages">
+        <li class="nav__item">
+          <a href="/" class="nav__link nav__link--logo">
+            {{h.icon("logo")}}
+          </a>
+        </li>
+
+        {% for item in h.menu %}
+        <li class="nav__item">
+          {# probably a problem with the class and the inline if statement. not matching up with the pug file above #}
+          <a href={{item.slug}}
+            {% if currentPath === item.slug %}
+              class="nav__link nav__link--active"
+            {% else %}
+              class="nav__link"
+            {% endif %}
+            >
+            {{h.icon(item.icon)}}
+            <span>
+              {{item.title}}
+            </span>
+          </a>
+        </li>
+        {% endfor %}
+
+      </div>
+      <div class="nav__section nav__section--search">
+        <div class="search">
+          <input class="search__input" type="text" placeholder="Coffee, beer..." name="search">
+          <div class="search__results"></div>
+        </div>
+      </div>
+      <div class="nav__section nav__section--user">
+
+
+        {% if user %}
+          <li class="nav__item">
+            <a
+              {% if currentPath === '/hearts' %}
+                class="nav__link nav__link--active"
+              {% else %}
+                class="nav__link"
+              {% endif %}
+                href="/hearts">
+                  {{h.icon('heart')}}
+                  <span class="heart-count">
+                    {{user.hearts.length}}
+                  </span>
+            </a>
+          </li>
+
+          <li class="nav__item">
+            <a
+              {% if currentPath === '/logout' %}
+                class="nav__link nav__link--active"
+              {% else %}
+                class="nav__link"
+              {% endif %}
+                href="/logout">
+                  {{h.icon("logout")}}
+                  <span>
+                    Logout
+                  </span>
+            </a>
+          </li>
+
+          <li class="nav__item">
+            <a
+              {% if currentPath === '/account' %}
+                class="nav__link nav__link--active"
+              {% else %}
+                class="nav__link"
+              {% endif %}
+                href="/account">
+                  <img class="avatar" src={{user.gravatar}}>
+            </a>
+          </li>
+
+
+        {% else %}
+          <li class="nav__item">
+            <a
+              {% if currentPath === '/register' %}
+                class="nav__link nav__link--active"
+              {% else %}
+                class="nav__link"
+              {% endif %}
+                href="/register">
+              Register
+            </a>
+          </li>
+
+          <li class="nav__item">
+            <a
+              {% if currentPath === '/login' %}
+                class="nav__link nav__link--active"
+              {% else %}
+                class="nav__link"
+              {% endif %}
+                href="/login">
+              Log In
+            </a>
+          </li>
+        {% endif %}
+
+
+      </div>
+    </nav>
+  </header>
+  {% endblock %}
+
+  {% block messages %}
+  {{ flash.flash() }}
+  {% endblock %}
+
+  <div class="content">
+    {% block content %}
+    <p>This is the default</p>
+    {% endblock %}
+  </div>
+
+  {% block scripts %}
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{mapKey}}&libraries=places"></script>
+  <script src="/dist/App.bundle.js"></script>
+  {% endblock %}
+
+</body>
+
+</html>

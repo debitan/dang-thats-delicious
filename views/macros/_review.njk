@@ -1,0 +1,20 @@
+{% macro review(review) %}
+    <div class="review__header">
+        <div class="review__author">
+            <img class="avatar" src={{review.author.gravatar}} alt="user gravatar">
+            <p> {{review.author.name}} </p>
+        </div>
+        <div class="review__stars" title="Rated {{review.rating}} out of 5 stars">
+            {% for i in range(0,review.rating) %}
+               ★
+            {% endfor %}
+            {% for i in range(0, 5 - review.rating) %}
+               ☆
+            {% endfor %}
+        </div>
+        <time class="review__time" datetime="review.created"> {{ h.moment(review.created).fromNow() }} </time>
+    </div>
+    <div class="review__body">
+        <p> {{review.text}} </p>
+    </div>
+{% endmacro %}

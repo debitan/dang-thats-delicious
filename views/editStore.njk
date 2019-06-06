@@ -1,0 +1,10 @@
+{% extends "./layout.njk" %}
+
+{% import "./macros/_storeForm.njk" as storeForm with context %}
+
+{% block content %}
+    <div class="inner">
+        <h2>{{ title }}</h2>
+        {{ storeForm.storeForm(store) }}
+    </div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends './layout.njk' %}
+
+{% block content %}
+    <div class='inner'>
+        <h2> {{ title }} </h2>
+        <form action='/account' method='POST'>
+            <label for='name'> Name </label>
+            <input type='text' name='name' value='{{user.name}}'>
+            <label for='email'> Email </label>
+            <input type='email' name='email' value='{{user.email}}'>
+            <input class='button' type='submit' value='Update my account'>
+        </form>
+{% endblock %}

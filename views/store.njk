@@ -1,0 +1,48 @@
+{% extends './layout.njk' %}
+{% import './macros/_reviewForm.njk' as reviewForm with context %}
+{% import './macros/_review.njk' as reviews with context %}
+
+{% block content %}
+<div class='single'>
+    <div class='single__hero'>
+        <img class='single__image' src={{'/uploads/' ~ store.photo if store.photo else '/uploads/store.png'}}>
+        <h2 class='title title--single'>
+            <a href='/stores/{{store.slug}}'>{{store.name}}</a>
+        </h2>
+    </div>
+</div>
+<div class='single__details inner'>
+    <img class='single__map' src={{h.staticMap(store.location.coordinates)}}>
+    <p class='single__location'>{{store.location.address}}</p>
+    <p>{{store.description}}</p>
+
+    {% if store.tags %}
+    <ul class='tags'>
+        {% for tag in store.tags %}
+        <li class='tag'>
+            <a class='tag__link' href="/tags/{{tag}}">
+                <span class='tag__text'>
+                    #{{tag}}
+                </span>
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    {% if user %}
+        {{ reviewForm.reviewForm(store)}}
+    {% endif %}
+
+    {% if store.reviews %}
+        <div class="reviews">
+            {% for review in store.reviews %}
+                <div class="review">
+                    {{ reviews.review(review) }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+</div>
+{% endblock %}

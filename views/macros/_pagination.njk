@@ -1,0 +1,17 @@
+{% macro pagination(page, pages, count) %}
+    <div class="pagination">
+        <div class="pagination__prev">
+            {% if page > 1 %}
+                <a href="/stores/page/{{page - 1}}"> Prev </a>
+            {% endif %}
+        </div>
+        <div class="pagination__text">
+            <p> Page {{page}} of {{pages}} - {{count}} total results </p>
+        </div>
+        <div class="pagination__next">
+            {% if page < pages %}
+                <a href="/stores/page/{{page | float + 1}}"> Next </a>
+            {% endif %}
+        </div>
+    </div>
+{% endmacro %}

@@ -1,0 +1,9 @@
+{% extends "./layout.njk" %}
+
+{% block content %}
+    <div class"inner">
+        <h2>{{status}}</h2>
+        <p>{{messages}}</p>
+    </div>
+    <pre class="error">{{stackHighlighted}}</pre>
+{% endblock %}
